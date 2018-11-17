@@ -1,0 +1,150 @@
+package tennis;
+public class TennisGame {
+    private String Player1;
+    private String Player2;
+    private int Score1;
+    private int Score2;
+    private String SScore1;
+    private String SScore2;
+    private String[] score = {"love","15","30","45","game"};
+    
+    public TennisGame(){
+        Player1 = "";
+        Player2 = "";
+        Score1 = 0;
+        Score2 = 0;
+        SScore1 = "";
+        SScore2 = "";
+    }
+    
+    public TennisGame(String a, String b, int c, int d){
+        Player1 = a;
+        Player2 = b;
+        scorecheck(c,d);
+    }
+    
+    public void setP1(String a){
+        Player1 = a;
+    }
+    public void setP2(String a){
+        Player2 = a;
+    }
+    public void setS1(int a){
+        Score1 = a;
+        SScore1 = score[a];
+    }
+    public void setS2(int a){
+        Score2 = a;
+        SScore2 = score[a];
+    }
+    public void scorecheck(int a, int b){
+        if((a > 4 || a < 0) ||
+           (b > 4 || b < 0) ||
+           (a == b && a == 4)){
+            setError();
+        }
+        else{
+            setS1(a);
+            setS2(b);
+        }
+    }
+    public void setError(){
+        Score1 = 0;
+        Score2 = 0;
+        SScore1 = "Error";
+        SScore2 = "Error";
+    }
+    public String getP1(){
+        return Player1;
+    }
+    public String getP2(){
+        return Player2;
+    }
+    public int getS1(){
+        return Score1;
+    }
+    public int getS2(){
+        return Score2;
+    }
+    public String getSS1(){
+        return SScore1;
+    }
+    public String getSS2(){
+        return SScore2;
+    }
+    public String tresult(){
+        return "Tennis game between two players\n"
+                + getP1() + " and " + getP2()
+                + "\nScore: " + getS1() + " to " + getS2()
+                + "\nScore: " + getSS1() + " to " + getSS2() + "\n";
+    }
+}
+
+
+package tennis;
+public class DoubleTennisGame extends TennisGame{
+    private String PP1;
+    private String PP2;
+    
+    public DoubleTennisGame(){
+        super();
+        PP1 = "";
+        PP2 = "";
+    }
+    public DoubleTennisGame(String a, String b, String c, String d, int e, int f){
+        super(a,c,e,f);
+        PP1 = b;
+        PP2 = d;
+    }
+    public String getPP1(){
+        return PP1;
+    }
+    public String getPP2(){
+        return PP2;
+    }
+    public String dresult(){
+        return "Tennis game between four players\n"
+                + getP1() + " and " + getPP1()
+                + "\nand " + getP2() + " and " + getPP2()
+                + "\nScore: " + getS1() + " to " + getS2()
+                + "\nScore: " + getSS1() + " to " + getSS2() + "\n";
+    }
+}
+
+
+
+package tennis;
+public class DemoTennisGames {
+    public static void main(String[] args) {
+        TennisGame Game1 =
+                new TennisGame("Amy","Bill",4,2);
+        TennisGame Game2 =
+                new TennisGame("Carl","Debbie",0,0);
+        TennisGame Game3 =
+                new TennisGame("Emily","Frank",4,4);
+        TennisGame Game4 =
+                new TennisGame("George","Hannah",3,0);
+        DoubleTennisGame Game5 =
+                new DoubleTennisGame("Irene","Jill","Ken","Larry",4,1);
+        DoubleTennisGame Game6 =
+                new DoubleTennisGame("Mike","Nick","Olivia","Pam",4,4);
+        DoubleTennisGame Game7 =
+                new DoubleTennisGame("Quentin","Rob","Sandra","Teresa",4,4);
+        DoubleTennisGame Game8 =
+                new DoubleTennisGame("Ursela","Violet","Will","Xander",3,0);
+        tprint(Game1);
+        tprint(Game2);
+        tprint(Game3);
+        tprint(Game4);
+        dprint(Game5);
+        dprint(Game6);
+        dprint(Game7);
+        dprint(Game8);
+    }
+    public static void tprint(TennisGame a){
+        System.out.println(a.tresult());
+    }
+    public static void dprint(DoubleTennisGame a){
+        System.out.println(a.dresult());
+    }
+}
